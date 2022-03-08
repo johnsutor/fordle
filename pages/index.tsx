@@ -52,11 +52,7 @@ const Home: NextPage = () => {
 
   }, [])
 
-  function recalculateValues(e) {
-    if (e.which === 13) {
-      e.preventDefault();
-    }
-
+  function recalculateValues(e: Object) {
     let tempCounts = [0,0,0,0,0,0]
 
     setCounts(tempCounts)
@@ -70,11 +66,7 @@ const Home: NextPage = () => {
     setCounts(tempCounts)
   }
 
-  let updateCount = useCallback(debounce((e) => {
-    if (e.which === 13) {
-      e.preventDefault();
-    }
-
+  let updateCount = useCallback(debounce((e: Object) => {
     let tempCounts = [...counts]
     let tempPlayed = played
 
