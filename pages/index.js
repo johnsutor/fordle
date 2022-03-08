@@ -1,10 +1,9 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 var debounce = require('lodash.debounce');
 
-const Home: NextPage = () => {
+const Home = () => {
   const [correctLetters] = useState(["O", "U"])
   const [presentLetters] = useState(["S"])
   const [absentLetters] = useState(["B", "G"])
@@ -52,7 +51,7 @@ const Home: NextPage = () => {
 
   }, [])
 
-  function recalculateValues(e: Object) {
+  function recalculateValues(e) {
     let tempCounts = [0,0,0,0,0,0]
 
     setCounts(tempCounts)
@@ -66,20 +65,17 @@ const Home: NextPage = () => {
     setCounts(tempCounts)
   }
 
-  let updateCount = useCallback(debounce((e: Object) => {
+  let updateCount = useCallback(debounce((e) => {
     let tempCounts = [...counts]
     let tempPlayed = played
 
-    console.log([...counts])
 
     const reg = new RegExp('^[0-9]+$');
     let number = Number(String(e.target.innerHTML).match(reg))
-    console.log(number)
 
     tempPlayed += number - tempCounts[e.target.id]
     tempCounts[e.target.id] = number
 
-    console.log(tempCounts)
     setCounts(tempCounts)
     setPlayed(tempPlayed)
   }, 500), [counts, played])
