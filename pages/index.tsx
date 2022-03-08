@@ -96,7 +96,7 @@ const Home: NextPage = () => {
     <div className="flex min-h-screen flex-col items-start justify-start bg-wbackground">
       <Head>
         <title>Fordle - Not The New York Times </title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/wordle.ico" />
       </Head>
       {/* Info Banner */}
       {showInfoBanner &&  
