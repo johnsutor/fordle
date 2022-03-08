@@ -178,7 +178,7 @@ const Home = () => {
                   )
                 }))}
               </div>
-              <div className='grid grid-cols-5 grid-rows-1 text-center h-full items-center justify-center mb-8'>
+              <div className='grid grid-cols-5 grid-rows-1 text-center h-full items-center justify-center mb-8 max-h-[90px]'>
               {/* <div className="flex flex-row justify-around text-center items-center w-full divide-x-2 divide-white h-full"> */}
                 <div className='col-span-2'>
                   <h2 className='font-bold my-3'>NEXT WORDLE</h2>
