@@ -80,6 +80,12 @@ const Home = () => {
     setPlayed(tempPlayed)
   }, 500), [counts, played])
 
+  function focusToEnd(e) {
+    e.target.focus();
+    document.execCommand('selectAll', false, null);
+    document.getSelection().collapseToEnd();
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-start justify-start bg-wbackground">
       <Head>
@@ -103,8 +109,10 @@ const Home = () => {
             day out, but still want the opportunity to flex our knowledge of 5-letter words to our friends. 
           </p>
           <p className='text-left text-sm mb-2'>
-            Each number on the statistics page is editable except for the win percentage. Just click/tap on the number to 
-            change it's value.
+            Each number on the statistics page is editable. Just click/tap on the number to 
+            change it's value. If you update the total number of games played, the values for each number of guesses will 
+            be updated to a uniform random number such that all values add to the total number of games played. If a single
+            guesses value is changed, the total number of games played will also be updated.
           </p>
         </div>
       </div>}
@@ -127,7 +135,7 @@ const Home = () => {
               <h2 className='font-bold'>STATISTICS</h2>
               <div className='flex flex-row justify-center space-x-6 text-center'>
                 <div>
-                  <p className='text-3xl font-normal' contentEditable={true} onInput={(e) => recalculateValues(e)} id="played">
+                  <p className='text-3xl font-normal' contentEditable={true} onInput={(e) => recalculateValues(e)} onClick={e => focusToEnd(e)} id="played">
                     {played}
                   </p>
                   <p className='text-xs'>
@@ -136,7 +144,7 @@ const Home = () => {
                 </div>
 
                 <div>
-                  <p className='text-3xl font-normal'>
+                  <p className='text-3xl font-normal' contentEditable={true} onClick={e => focusToEnd(e)}>
                     {win}
                   </p>
                   <p className='text-xs'>
@@ -145,7 +153,7 @@ const Home = () => {
                 </div>
 
                 <div>
-                  <p className='text-3xl font-normal' contentEditable={true}>
+                  <p className='text-3xl font-normal' contentEditable={true} onClick={e => focusToEnd(e)}>
                     {streak}
                   </p>
                   <p className='text-xs'>
@@ -154,7 +162,7 @@ const Home = () => {
                 </div>
 
                 <div>
-                  <p className='text-3xl font-normal' contentEditable={true}>
+                  <p className='text-3xl font-normal' contentEditable={true} onClick={e => focusToEnd(e)}>
                     {maxStreak}
                   </p>
                   <p className='text-xs'>
@@ -170,7 +178,7 @@ const Home = () => {
                     <div className='flex flex-row w-full' key={`distribution-${i}`}>
                     <p className='mr-1'>{i + 1}</p>
                     <div id={`distribution-bar-${i}`} className="flex h-[20px] text-right items-center justify-end bg-wabsent min-w-[20px]"style={{width:  (counts[i] / Math.max(...counts)) * 100 + '%'}}>
-                      <p className="h-full mr-1 mb-[3px]" contentEditable={true} id={i} onInput={(e) => updateCount(e)}>
+                      <p className="h-full mr-1 mb-[3px]" contentEditable={true} id={i} onInput={(e) => updateCount(e)} onClick={e => focusToEnd(e)}>
                         {counts[i]}
                       </p>
                     </div>
